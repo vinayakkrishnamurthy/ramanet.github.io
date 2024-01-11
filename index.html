@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+
+<style>
+table, th, td {
+  border:1px solid black;
+}
+
+.dropbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+</style>
+
+<body>
+
+<h2>RamaViz Data Input</h2>
+
+<h3>Help</h3>
+
+<table>
+  <tr>
+    <th>Entity</th>
+    <th>Definition/Explanation</th>
+    <th>Possible values/Examples</th>
+  </tr>
+  <tr>
+    <td>Kāṇḍa</td>
+    <td>Name of the kāṇḍa.</td>
+    <td>In the context of the Ramayana, kaanda refers to a section. The possible values are: "Bālakāṇḍa", "Ayodhyakāṇḍa", "Araṇyakāṇḍa", "Kiṣkindakāṇḍa", "Sundarākāṇḍa", "Yuddhakāṇḍa", and "Uttarakāṇḍa".</td>
+  </tr>
+  <tr>
+    <td>Sarga</td>
+    <td>Number of the sarga.</td>
+    <td>Sarga is the equivalent of a chapter. Enter numerical value.</td>
+  </tr>
+  <tr>
+    <td>Shloka</td>
+    <td>Number of the shloka.</td>
+    <td>Shloka is the specific verse in which the entity in question appears. Obviously, many entities will appear in multiple shlokas. The entries must be made for each shloka regardless of repetition.</td>
+  </tr>
+  <tr>
+    <td>Name</td>
+    <td>Name of the entity.</td>
+    <td>Examples: "Rama", "Ravana", "Ayodhya", etc.</td>
+  </tr>
+  <tr>
+    <td>Type</td>
+    <td>The type of content in the current node. For example, the node-type for the entry "Rama" would be "Person". Please note that we will treat all intelligent beings in the text as persons. As another example, the node-type for "Brahmaastra" would be "Object"</td>
+    <td>The current possible node-types are: "Person", "Place", "Event", "Object", "Time"</td>
+  </tr>
+  <tr>
+    <td>Sub-Type</td>
+    <td>The sub-type of content in the current node. For example, the type for the entry "Lanka" would be "Place" while the sub-type would be "City". As another example, the node-type for "Brahmaastra" would be "Weapon"</td>
+    <td>The current possible node-types are: "Person" (Royalty, Rishi, Deva, Asura, Rakshasa, Forest Dweller, Vaanar, Animal, Bird), "Place" (City, Forest, Mountain, River, Ocean, Island), "Event" (Celebration, Marriage, Interaction, Birth, Conflict, War, Astronomical), "Object" (Weapon, Medicine, Architecture, Infrastructure, Plant)</td>
+  </tr>
+    <tr>
+    <td>Meta-data</td>
+    <td>This is a contextual entry. Depending on the type and sub-type, this entry will take different forms</td>
+    <td>Typically, this may contain notes, the text of the shloka, or other sources of information. This information will be moderated.</td>
+  </tr>
+</table>
+
+<p>Kāṇḍa: </p>
+<select name="kaanda" id="kaanda">
+    <option value="" disabled selected>Select</option>
+    <option value="">Bālakāṇḍa</option>
+    <option value="">Ayodhyakāṇḍa</option>
+    <option value="">Araṇyakāṇḍa</option>
+	<option value="">Kiṣkindakāṇḍa</option>
+	<option value="">Sundarākāṇḍa</option>
+	<option value="">Sundarākāṇḍa</option>
+	<option value="">Sundarākāṇḍa</option>
+</select>
+
+<br>
+
+<p>Sarga: </p>
+<input type="number" id="Sarga" value="" name="Sarga" min="1" max="500">
+<br>
+
+<p>Shloka: </p>
+<input type="number" id="Shloka" value="" name="Shloka" min="1" max="500">
+<br>
+
+<p>Entity Name: </p>
+<input type="text" id="Name" value="">
+<br>
+
+<p>Entity Type: </p>
+<select name="Type" id="Type" onChange="getSubType(this.value);">
+    <option value="" disabled selected>Select</option>
+    <option value="A">Person</option>
+    <option value="B">Place</option>
+    <option value="C">Event</option>
+	<option value="D">Object</option>
+	<option value="E">Time</option>
+</select>
+
+<br>
+
+<p>Entity Sub-type: </p>
+<select name="category" id="category">
+    <option value="" disabled selected>Select</option>
+</select>
+
+<!-- <p>Entity Type: </p> -->
+<!-- <div class="dropdown"> -->
+  <!-- <button class="dropbtn" id="Type" >Select node type</button> -->
+  <!-- <div class="dropdown-content"> -->
+    <!-- <a href="#">Person</a> -->
+    <!-- <a href="#">Place</a> -->
+    <!-- <a href="#">Event</a> -->
+	<!-- <a href="#">Object</a> -->
+	<!-- <a href="#">Time</a> -->
+  <!-- </div> -->
+<!-- </div> -->
+
+<!-- <p>Entity Sub-type: </p> -->
+<!-- <div class="dropdown"> -->
+  <!-- <button class="dropbtn" id="Type" >Select node sub-type</button> -->
+  <!-- <div class="dropdown-content"> -->
+    <!-- <a href="#">Person</a> -->
+    <!-- <a href="#">Place</a> -->
+    <!-- <a href="#">Event</a> -->
+	<!-- <a href="#">Object</a> -->
+	<!-- <a href="#">Time</a> -->
+  <!-- </div> -->
+<!-- </div> -->
+
+
+<br>
+<br>
+ 
+<button class="dropbtn" onclick="myFunction()">Add Entity</button>
+
+
+<p id="demo"></p>
+
+<script>
+function myFunction() {
+  var x = document.getElementById("myText").value;
+  document.getElementById("demo").innerHTML = x;
+}
+
+var type_SubType = {
+    A: ["Royalty", "Rishi", "Deva", "Asura", "Rakshasa", "Forest Dweller", "Vaanar", "Animal", "Bird"],
+    B: ["City", "Forest", "Mountain", "River", "Ocean", "Island"],
+    C: ["Celebration", "Marriage", "Interaction", "Birth", "Conflict", "War", "Astronomical"],
+	D: ["Weapon", "Medicine", "Architecture", "Infrastructure", "Plant"],
+	E: ["Dawn", "Dusk", "Evening", "Night"]
+}
+
+function getSubType(value) {
+	if (value.length == 0) document.getElementById("category").innerHTML = "<option></option>";
+	else {
+		var catOptions = "";
+		for (categoryId in type_SubType[value]) {
+			catOptions += "<option>" + type_SubType[value][categoryId] + "</option>";
+		}
+		document.getElementById("category").innerHTML = catOptions;
+	}
+}
+
+</script>
+
+</body>
+</html>
